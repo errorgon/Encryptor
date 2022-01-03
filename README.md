@@ -1,4 +1,5 @@
 # Encryptor
+[![](https://jitpack.io/v/errorgon/ENCRYPTOR.svg)](https://jitpack.io/#errorgon/ENCRYPTOR)
 Java library to help make AES/CBC/NoPadding encryption easier.
 
 ## Installation
