@@ -56,7 +56,7 @@ public class EncryptorTest {
     @Test
     public void encryptStringOnlyTest() {
         String plainText = new String("LongerMessageIsRoughly32CharLong");
-        String[] ivKeyCipher = Encryptor.encrypt(plainText);
+            String[] ivKeyCipher = Encryptor.encrypt(plainText);
         String result = Encryptor.decrypt(ivKeyCipher[0], ivKeyCipher[1], ivKeyCipher[2]);
 
         Assert.assertEquals(plainText, result);
