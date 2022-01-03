@@ -33,6 +33,18 @@ public class EncryptorTest {
     }
 
     @Test
+    public void encryptAndDecryptPartialTest() {
+        String plainText = new String("MessageNotMultipleOf16Chars");
+
+        byte[] key = Encryptor.generateNewKey(Encryptor.AES_256).getEncoded();
+        byte[] iv = Encryptor.generateIV().getIV();
+        byte[][] ivAndCipher = Encryptor.encrypt(iv, key, plainText.getBytes());
+
+        byte[] result = Encryptor.decrypt(ivAndCipher[0], key, ivAndCipher[1]);
+        Assert.assertEquals("MessageNotMultipleOf16Chars", new String(result).trim());
+    }
+
+    @Test
     public void decrypt32Test() {
         String key = "d41468375496980fcee3cd5e36583f4acf30b4f070691fc81c77d9e53a45a4fa";
         String iv = "7668591bf76e5e5a84930ca579dad07a";
@@ -50,6 +62,7 @@ public class EncryptorTest {
         Assert.assertEquals(plainText, result);
     }
 
+
     @Test
     public void hexStringToByteArrayTest() {
         String input = "0B0A0901";
@@ -64,6 +77,18 @@ public class EncryptorTest {
         Assert.assertEquals("0B0A0901", result.toUpperCase());
     }
 
+    @Test
+    public void paddingStringTest() {
+        Assert.assertEquals("Hello World     ", Encryptor.pad("Hello World"));
+        Assert.assertEquals("Hello World     ", Encryptor.pad("Hello World     "));
+        Assert.assertEquals("Hello World                     ", Encryptor.pad("Hello World      "));
+    }
 
+    @Test
+    public void paddingByteTest() {
+        byte[] input = new byte[]{72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100};
+        byte[] expected = new byte[]{72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 32, 32, 32, 32, 32};
+        Assert.assertEquals(Arrays.toString(expected), Arrays.toString(Encryptor.pad(input)));
+    }
 
 }

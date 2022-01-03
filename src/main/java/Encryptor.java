@@ -8,6 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Encryptor {
@@ -54,7 +55,7 @@ public class Encryptor {
             SecretKeySpec secretKeySpec = new SecretKeySpec(key, AES);
             Cipher cipher = Cipher.getInstance(AES_CBC_NOPADDING);
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
-            byte[] cipherText = cipher.doFinal(plainText);
+            byte[] cipherText = cipher.doFinal(pad(plainText));
             return new byte[][]{iv, cipherText};
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,6 +96,28 @@ public class Encryptor {
             byteArray[i] = (byte) Integer.parseInt(input.substring(2 * i, 2 * i + 2), 16);
         }
         return byteArray;
+    }
+
+    public static String pad(String plainText) {
+        while (plainText.length() % 16 > 0) {
+            plainText += " ";
+        }
+        return plainText;
+    }
+
+    public static byte[] pad(byte[] plainText) {
+        ArrayList<Byte> byteList = new ArrayList<>();
+        for (byte b : plainText) {
+            byteList.add(b);
+        }
+        while (byteList.size() % 16 > 0) {
+            byteList.add((byte) 32);
+        }
+        byte[] padded = new byte[byteList.size()];
+        for (int i = 0; i < byteList.size(); i++) {
+            padded[i] = byteList.get(i);
+        }
+        return padded;
     }
 
 }
