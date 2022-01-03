@@ -20,7 +20,7 @@ allprojects {
 Add the Encryptor library as a dependency to the build.gradle (module) file
 ```
 dependencies {
-    implementation 'com.github.errorgon:encryptor:1.0.0'
+    implementation 'com.github.errorgon:encryptor:1.0.7'
 }
 ```
 
@@ -37,9 +37,9 @@ Add the jitpack repository and library dependency to your pom.xml file
 
 <dependencies>
     <dependency>
-        <groupId>com.github.errorgon</groupId>
+        <groupId>com.github.errorgon.encryptor</groupId>
         <artifactId>Encryptor</artifactId>
-        <version>1.0.6</version>
+        <version>1.0.7</version>
     </dependency>
 </dependencies>
 ```
