@@ -1,3 +1,4 @@
+import com.errorgon.Encryptor.Encryptor;
 import org.junit.Assert;
 import org.junit.Test;
 

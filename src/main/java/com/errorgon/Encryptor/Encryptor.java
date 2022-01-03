@@ -1,3 +1,5 @@
+package com.errorgon.Encryptor;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Cipher;
