@@ -39,7 +39,7 @@ Add the jitpack repository and library dependency to your pom.xml file
     <dependency>
         <groupId>com.github.errorgon</groupId>
         <artifactId>Encryptor</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.6</version>
     </dependency>
 </dependencies>
 ```
