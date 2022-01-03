@@ -90,6 +90,13 @@ byte[] result = Encryptor.decrypt(ivAndCipher[0], key, ivAndCipher[1]);
 System.out.println(new String(result).trim()); // Output: MessageNotMultipleOf16Chars
 ```
 
+### Example
+Example to show encrypting and decrypting in a couple of lines
+```
+String[] ivKeyCipher = Encryptor.encrypt("LongerMessageIsRoughly32CharLong");
+String decrypted = Encryptor.decrypt(ivKeyCipher[0], ivKeyCipher[1], ivKeyCipher[2]);
+```
+
 
 
 
